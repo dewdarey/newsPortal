@@ -1,6 +1,7 @@
 package kz.springproject.phoenix.service;
 
-import kz.springproject.phoenix.model.News;
+import kz.springproject.phoenix.dto.NewsDto;
+import kz.springproject.phoenix.mapper.NewsMapper;
 import kz.springproject.phoenix.repository.NewsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,21 +13,22 @@ import java.util.List;
 public class NewsService {
 
     private final NewsRepository newsRepository;
+    private final NewsMapper newsMapper;
 
-    public List<News> getAllNews() {
-        return newsRepository.findAll();
+    public List<NewsDto> getAllNews() {
+        return newsMapper.toDtoList(newsRepository.findAll());
     }
 
-    public News getNewsById(Long id) {
-        return newsRepository.findById(id).orElse(new News());
+    public NewsDto getNewsById(Long id) {
+        return newsMapper.toDto(newsRepository.findById(id).orElse(null));
     }
 
-    public News addNews(News news) {
-        return newsRepository.save(news);
+    public NewsDto addNews(NewsDto news) {
+        return newsMapper.toDto(newsRepository.save(newsMapper.toEntity(news)));
     }
 
-    public News updateNews(News news) {
-        return newsRepository.save(news);
+    public NewsDto updateNews(NewsDto news) {
+        return newsMapper.toDto(newsRepository.save(newsMapper.toEntity(news)));
     }
 
     public void deleteNews(Long id) {

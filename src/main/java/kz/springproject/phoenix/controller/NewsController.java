@@ -1,6 +1,6 @@
 package kz.springproject.phoenix.controller;
 
-import kz.springproject.phoenix.model.News;
+import kz.springproject.phoenix.dto.NewsDto;
 import kz.springproject.phoenix.service.NewsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,22 +15,22 @@ public class NewsController {
     private final NewsService newsService;
 
     @GetMapping
-    public List<News> getAllNews() {
+    public List<NewsDto> getAllNews() {
         return newsService.getAllNews();
     }
 
     @GetMapping(value = "{id}")
-    public News getNewsById(@PathVariable(name = "id") Long id) {
+    public NewsDto getNewsById(@PathVariable(name = "id") Long id) {
         return newsService.getNewsById(id);
     }
 
     @PostMapping
-    public News createNews(@RequestBody News news) {
+    public NewsDto createNews(@RequestBody NewsDto news) {
         return newsService.addNews(news);
     }
 
     @PutMapping
-    public News updateNews(@RequestBody News news) {
+    public NewsDto updateNews(@RequestBody NewsDto news) {
         return newsService.updateNews(news);
     }
 

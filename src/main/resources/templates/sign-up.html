@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>SIGN UP PAGE</h1>
+    <form th:action="@{'/signup'}" method="post">
+        LOGIN <input type="text" name="username">
+        FULL NAME <input type="text" name="full_name">
+        PASSWORD <input type="password" name="password">
+        REPEAT PASSWORD <input type="password" name="repeat_password">
+        AVATAR URL <input type="text" name="avatar_url">
+        <button>SIGN UP</button>
+    </form>
+    <a th:href="@{'/'}">TO HOME PAGE</a>
+</body>
+</html>
